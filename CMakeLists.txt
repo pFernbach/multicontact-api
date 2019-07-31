@@ -32,6 +32,7 @@ SETUP_PROJECT()
 
 ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.5")
 ADD_REQUIRED_DEPENDENCY("pinocchio >= 2.0.0")
+ADD_REQUIRED_DEPENDENCY(curves)
 
 SET(BOOST_COMPONENTS unit_test_framework serialization)
 
