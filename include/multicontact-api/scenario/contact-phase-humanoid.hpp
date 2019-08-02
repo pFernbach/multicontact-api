@@ -93,6 +93,10 @@ namespace multicontact_api
       , m_vcom_ref(CubicHermiteSpline3::Constant(CubicHermiteSpline3::VectorD::Zero()))
       , m_forces_ref(CubicHermiteSpline24::Constant(CubicHermiteSpline24::VectorD::Zero()))
       , m_reference_configurations(0)
+      , m_RF_trajectory(0)
+      , m_LF_trajectory(0)
+      , m_RH_trajectory(0)
+      , m_LH_trajectory(0)
       {}
 
       /// \brief copy constructor
@@ -116,6 +120,10 @@ namespace multicontact_api
       , m_vcom_ref(other.m_vcom_ref)
       , m_forces_ref(other.m_forces_ref)
       , m_reference_configurations(other.m_reference_configurations)
+      , m_RF_trajectory(other.m_RF_trajectory)
+      , m_LF_trajectory(other.m_LF_trajectory)
+      , m_RH_trajectory(other.m_RH_trajectory)
+      , m_LH_trajectory(other.m_LH_trajectory)
       {}
 
       /// \brief copy operator
@@ -137,6 +145,10 @@ namespace multicontact_api
         m_vcom_ref = other.m_vcom_ref;
         m_forces_ref = other.m_forces_ref;
         m_reference_configurations = other.m_reference_configurations;
+        m_RF_trajectory=other.m_RF_trajectory;
+        m_LF_trajectory=other.m_LF_trajectory;
+        m_RH_trajectory=other.m_RH_trajectory;
+        m_LH_trajectory=other.m_LH_trajectory;
         return *this;
       }
 
@@ -160,6 +172,10 @@ namespace multicontact_api
       CubicHermiteSpline3 m_com_ref;
       CubicHermiteSpline3 m_vcom_ref;
       CubicHermiteSpline24 m_forces_ref;
+      VectorStateVector m_RF_trajectory;
+      VectorStateVector m_LF_trajectory;
+      VectorStateVector m_RH_trajectory;
+      VectorStateVector m_LH_trajectory;
 
     private:
 
@@ -194,7 +210,11 @@ namespace multicontact_api
         ar & boost::serialization::make_nvp("angular_momentum_ref",m_angular_momentum_ref);
         ar & boost::serialization::make_nvp("com_ref",m_com_ref);
         ar & boost::serialization::make_nvp("vcom_ref",m_vcom_ref);
-        ar & boost::serialization::make_nvp("forces_ref",m_forces_ref);        
+        ar & boost::serialization::make_nvp("forces_ref",m_forces_ref);
+        ar & boost::serialization::make_nvp("RF_trajectory",m_RF_trajectory);
+        ar & boost::serialization::make_nvp("LF_trajectory",m_LF_trajectory);
+        ar & boost::serialization::make_nvp("RH_trajectory",m_RH_trajectory);
+        ar & boost::serialization::make_nvp("LH_trajectory",m_LH_trajectory);
       }
 
       template<class Archive>
@@ -227,6 +247,10 @@ namespace multicontact_api
         ar >> boost::serialization::make_nvp("com_ref",m_com_ref);
         ar >> boost::serialization::make_nvp("vcom_ref",m_vcom_ref);
         ar >> boost::serialization::make_nvp("forces_ref",m_forces_ref);
+        ar >> boost::serialization::make_nvp("RF_trajectory",m_RF_trajectory);
+        ar >> boost::serialization::make_nvp("LF_trajectory",m_LF_trajectory);
+        ar >> boost::serialization::make_nvp("RH_trajectory",m_RH_trajectory);
+        ar >> boost::serialization::make_nvp("LH_trajectory",m_LH_trajectory);
       }
 
       BOOST_SERIALIZATION_SPLIT_MEMBER()

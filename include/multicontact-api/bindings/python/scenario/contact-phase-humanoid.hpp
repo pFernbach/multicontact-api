@@ -84,6 +84,15 @@ namespace multicontact_api
         .def_readwrite("forces_ref",&ContactPhase::m_forces_ref)
         .add_property("contact_forces_trajectories", bp::make_array(&ContactPhase::m_contact_forces_trajectories))
 
+        .add_property("RF_trajectory",
+                      bp::make_getter(&ContactPhase::m_RF_trajectory,bp::return_internal_reference<>()))
+        .add_property("LF_trajectory",
+                      bp::make_getter(&ContactPhase::m_LF_trajectory,bp::return_internal_reference<>()))
+        .add_property("RH_trajectory",
+                      bp::make_getter(&ContactPhase::m_RH_trajectory,bp::return_internal_reference<>()))
+        .add_property("LH_trajectory",
+                      bp::make_getter(&ContactPhase::m_LH_trajectory,bp::return_internal_reference<>()))
+
         .def(bp::self == bp::self)
         .def(bp::self != bp::self)
 
